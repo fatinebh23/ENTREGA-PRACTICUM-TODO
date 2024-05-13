@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9fec66db.css",
+    "main.js": "/static/js/main.9a0f295b.js",
+    "static/js/453.e06f47da.chunk.js": "/static/js/453.e06f47da.chunk.js",
+    "static/media/check-admin.jpg": "/static/media/check-admin.dc1ae15d24166a86653d.jpg",
+    "static/media/claudia.png": "/static/media/claudia.a8d776b50d5f1d3aec88.png",
+    "static/media/home-3.png": "/static/media/home-3.a053e0cd1c2cfdc911d4.png",
+    "static/media/home-4.png": "/static/media/home-4.b199af421e92201f77d2.png",
+    "static/media/home-5.png": "/static/media/home-5.bf27318bc346d3f5b12e.png",
+    "static/media/patri.png": "/static/media/patri.b9ba9b384a397f7c89b2.png",
+    "static/media/crud-cursos.png": "/static/media/crud-cursos.8a79247572018a7d3b27.png",
+    "static/media/crud-centros.png": "/static/media/crud-centros.f87ba1f0c057471b8f77.png",
+    "static/media/nosotros.png": "/static/media/nosotros.16fb5ca6c723f21e634e.png",
+    "static/media/home-1.png": "/static/media/home-1.36d456eee65aac3d2d9f.png",
+    "static/media/cliente2.png": "/static/media/cliente2.5e96228edcb78d778b40.png",
+    "static/media/alumno-perfil.jpeg": "/static/media/alumno-perfil.28da4c6fb5c81b0d422c.jpeg",
+    "static/media/cliente1.png": "/static/media/cliente1.9da8f453c0b96936fcc0.png",
+    "static/media/cliente3.png": "/static/media/cliente3.fa300276c831d66b56bb.png",
+    "static/media/header.jpeg": "/static/media/header.63e6ec22952ad93fc79e.jpeg",
+    "static/media/fatine.png": "/static/media/fatine.13e470bc3197cb7db7de.png",
+    "static/media/home-2.jpeg": "/static/media/home-2.fff1439d6d79aecda2c9.jpeg",
+    "static/media/logo.png": "/static/media/logo.d34001db111457aa1f2f.png",
+    "static/media/logo-name.png": "/static/media/logo-name.50aa9ffe8610fb313c90.png",
+    "static/media/empresa-contrato.jpeg": "/static/media/empresa-contrato.21eee3b165a5f8f4ef32.jpeg",
+    "static/media/contacto.jpeg": "/static/media/contacto.5097a421b95b5689a591.jpeg",
+    "static/media/cv-perfil.jpeg": "/static/media/cv-perfil.aaa4b13af5531001b418.jpeg",
+    "static/media/oferta.jpeg": "/static/media/oferta.1036cba782d734d5bdfe.jpeg",
+    "index.html": "/index.html",
+    "main.9fec66db.css.map": "/static/css/main.9fec66db.css.map",
+    "main.9a0f295b.js.map": "/static/js/main.9a0f295b.js.map",
+    "453.e06f47da.chunk.js.map": "/static/js/453.e06f47da.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9fec66db.css",
+    "static/js/main.9a0f295b.js"
+  ]
+}

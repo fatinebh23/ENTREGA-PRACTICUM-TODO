@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^mypracticum.es$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.mypracticum.es$
+RewriteCond %{REQUEST_URI} !front/build/
+RewriteRule (.*) /front/build/$1 [L]

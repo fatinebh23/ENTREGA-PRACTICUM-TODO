@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+}
+.main {
+  background-color: white;
+  padding-top: 190px;
+  padding-bottom: 10rem;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Montserrat', sans-serif;
+  color: #9564ae;
+}
+/* //EStiloss para el navbar */
+.e-header{
+  position: fixed;
+/*   top: 0;
+  left: 0; */
+  width: 100%;
+  z-index: 10;
+}
+.e-header .bg-menu{
+  background-color: #fff;
+  transition: all ease .3s;
+}
+.e-header.scroll .bg-menu{
+  background-color: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(5px);
+}
+.e-header .navbar-brand img{
+  width: 100px;
+  height: auto;
+  transition: all ease .3s;
+}
+.e-header.scroll .navbar-brand img{
+  width: 60px;
+}
+.navbar-light {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 60px 0px rgb(149 100 174 / 32%);
+}
+.navbar-toggler {
+  color: #9564ae;
+}
+/* CSS para el despliegue del menú en dispositivos móviles */
+@media (max-width: 992px) {
+  .bg-menu {
+    background-color: #fff; /* Cambia el color de fondo del menú si lo necesitas */
+  }
+  .navbar-collapse {
+    position: fixed;
+    top: 56px; /* Ajusta la altura del menú desplegado */
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #fff; /* Cambia el color de fondo del menú desplegado si lo necesitas */
+    z-index: 1000;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .navbar-collapse.show {
+    left: 50%;
+  }
+}
+.bg-menu {
+  background-color: #ffffff;
+} 
+.auth-post {
+  width: 800px;
+  margin: auto;
+  margin-top: 150px;
+  
+  /*background-image: "./img/fondo1.png";*/
+  box-shadow: 0px 14px 40px #9564ae;
+  padding: 70px 50px 50px 50px;
+  border-radius: 30px;
+  transition: all .3s;
+}
+.auth-wrapper .form-control:focus {
+  border-color: #9564ae;
+  box-shadow: none;
+}
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+ 
+}
+.custom-control-label {
+  font-weight: 400;
+}
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7de5;
+  margin: 0;
+}
+.forgot-password a {
+  color: #9564ae;
+}
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #9564ae;
+  outline: 0;
+  box-shadow: 0 0 0 .25rem rgba(149, 100, 174, 0.25);
+}
+.text-shadow {
+  color: #9564ae;
+  font-size: 60px;;
+}
+.text2-shadow {
+  color: #9564ae;
+  font-size: 30px;
+
+}
+.s-bloq-4-text-tittle {
+  color: #9564ae;
+  font-size: 30px;;
+}
+.s-bloq-4-text {
+  font-size: 20px;
+  color: rgb(83, 87, 83);
+}
+.card-img-top-team {
+  width: 100%;
+  height: auto;
+}
+.cardindex {
+  width: 90%;
+  height: auto;
+  flex: 1; /* Distribuye el espacio disponible entre las tarjetas */
+  border: 1px solid #ccc;
+  box-shadow: 0px 3px 10px #9564ae; /* Sombra morada */
+  padding: 20px;
+  margin: 10px;
+}
+.link {
+  text-decoration: none; /* Elimina el subrayado */
+  color: #9564ae; /* Cambia el color del texto del enlace a negro */
+}
+.s-bloq-1 {
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+}
+.s-bloq-3-bg {
+  position: relative;
+  /*background: #9564ae;*/
+  background-color: rgba(89, 2, 118, 0.337);
+  font-family: 'Montserrat', sans-serif;
+}
+.s-bloq-3-bg-text {
+  color: #9564ae;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 47px;
+  letter-spacing: 0em;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+}
+.s-bloq-7-capas {
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+}
+.s-bloq-7-capas-img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  font-family: 'Montserrat', sans-serif;
+}
+.s-bloq-10-rec {
+  background-color: #9864ae;
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(255, 255, 255);
+  padding-left: 5%;
+  border-right: 10px solid #7cad64;
+}
+.s-footer {
+  /*background-color: #a45fd30e;*/
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 60px 0px rgb(149 100 174 / 32%);
+  display: flex;
+  color: #9564ae;
+}
+.s-header {
+  position: relative;
+}
+.s-header_overlay {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 20%;
+  z-index: 2;
+}
+.s-header_box {
+  position: relative;
+}
+.s-header_box-img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+.s-header_overlay-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #ffffff;
+}
+.card {
+  width: 800px;
+  margin: auto;
+  box-shadow: 0px 10px 40px #858187;
+  padding: 70px 50px 50px 50px;
+  border-radius: 30px;
+  transition: all .3s;
+}
+   /* Estilos valores */
+  #valores {
+    background-color: white;
+  }
+  #valores ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  #valores ul li {
+    position: relative;
+    padding-left: 20px;
+  }
+  #valores ul li::before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    color: #000000;
+  }
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #9564ae;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  .filter-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  .search-button {
+    background-color: #9564ae;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .search-button:hover {
+    background-color: #9564ae;
+  }
+  .card-img-top-team {
+    width: 80%;
+    height: auto;
+    padding: 20px;
+    margin-left: 35px;
+  }
+  .text-eslogan {
+    color: #9564ae;
+  }
+  .bg-caja {
+    background-color: rgba(255, 255, 255, 0.57);
+  }
+  .text-shadow-poco {
+    color: #9564ae;
+    text-transform: uppercase;
+  }
+  button.purple-button {
+    background-color: #9564ae;
+    color: white;
+  }
+  .icono {
+    fill: #9564ae;
+  }

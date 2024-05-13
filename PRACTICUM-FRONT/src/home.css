@@ -1,0 +1,97 @@
+.card:hover {
+    transform: translateY(-30px); /* Mover la carta hacia arriba cuando el ratón pasa sobre ella */
+    transition: transform 0.3s ease; /* Agregar una transición suave */
+  }
+
+
+/* Estilos para la sección de testimonios */
+.testimonios {
+    background-color: #fff;
+  }
+  
+  /* Estilos para las tarjetas de testimonios */
+  .testimonial-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease; /* Transición de movimiento */
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-5px); /* Movimiento al pasar el ratón */
+    box-shadow: 0px 0px 20px #9564ae; /* Sombra morada */
+  }
+  
+  /* Estilos para la imagen del cliente */
+  .testimonial-img img {
+    width: 50%;
+  }
+  
+  /* Estilos para la información del testimonio */
+  .testimonial-info {
+    padding: 20px;
+  }
+  
+  /* Estilos para el nombre del cliente */
+  .testimonial-info h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* Estilos para el mensaje del testimonio */
+  .testimonial-info p {
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: #666;
+  }
+  
+/* Estilos para la sección de introducción */
+.s-introduccion {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+}
+
+.s-introduccion-title {
+  color: #635f5f;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.s-introduccion-text {
+  color: #666;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .s-introduccion-title {
+    font-size: 30px;
+  }
+
+  .s-introduccion-text {
+    font-size: 16px;
+  }
+}
+.accordion-item{
+  border: none;
+  margin-bottom: 1rem;
+}
+.accordion-button {
+  background-color: transparent;
+  border: 1px solid #9564ae;
+  color: #9564ae;
+  border-radius: 6px;
+}
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: #9564ae;
+}
+.accordion-button:focus {
+  box-shadow: none;
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27none%27 stroke=%27%23ffffff%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpath d=%27M2 5L8 11L14 5%27/%3e%3c/svg%3e");
+}
