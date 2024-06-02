@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './components/login.component'
 import SignUp from './components/signup.component'
 import Home from './components/home.component'
@@ -11,56 +11,47 @@ import Contacto from './components/contacto.component'
 import IndexStudent from './components/indexstudent.component'
 import IndexCompany from './components/indexcompany.component'
 import PostOffert from './components/postoffert.component'
-import PostProfile from './components/postprofile.component' 
+import PostProfile from './components/postprofile.component'
 import Outernavbar from './components/outernavbar.component'
 import Outerfooter from './components/outerfooter.component';
 import MapContainer from './components/MapContainer.component';
 import NotFound from './components/notfound.component';
-import Loading from './components/loading.component';
-import Wow from './components/wow.component';
-import '../src/animate.css';
+import WOW from 'wowjs';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import LegalNotice from './components/LegalNotice';
+import CookiePolicy from './components/CookiePolicy';
+import TermsOfUse from './components/TermsOfUse';
 
 
 
-function App() {
+class App extends Component {
 
-  /*constructor(props) {
+  constructor(props) {
     super(props);
-    this.state = {
-      loading: false, // Puedes inicializar el estado como false si no quieres mostrar el Spinner al principio
-    };
   }
 
-  // Método para mostrar el Spinner
-  showSpinner = () => {
-    this.setState({ loading: true });
-  };
+  componentDidMount() {
+    new WOW.WOW({
+      boxClass: 'wow',
+      animateClass: 'animated',
+      offset: 0,
+      mobile: true,
+      live: true
+    }).init();
+  }
 
-  // Método para ocultar el Spinner
-  hideSpinner = () => {
-    this.setState({ loading: false });
-  };
-  
   render() {
-  const { loading } = this.state;*/
 
-  return (
-    <Router>
+    return (
+      <Router>
 
-      <div className="App">
-      {/*<Wow /> {/* Componente que inicializa las animaciones */} 
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <div className="App">
 
-        {/* Renderiza el Spinner si loading es true */}
-        {/*{loading && <Loading />}*/}
-          {/* Resto del contenido de tu aplicación */}
-
-        {/* Agrega el script de Google Translate al DOM */}
-    
-        <Outernavbar/>
+          <Outernavbar />
           <div className="main" >
-          <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    
-          <Routes>
+
+            <Routes>
               <Route exact path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
               <Route path="/index" element={<Index />} />
@@ -75,13 +66,18 @@ function App() {
               <Route path="/postoffert" element={<PostOffert />} />
               <Route path="/postprofile" element={<PostProfile />} />
               <Route path="/map" element={<MapContainer />} />
-              <Route path='*' element={<NotFound />}/>
+              <Route path='*' element={<NotFound />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
+              <Route path="/legal-notice" element={<LegalNotice/>} />
+              <Route path="/cookie-policy" element={<CookiePolicy/>} />
+              <Route path="/terms-of-use" element={<TermsOfUse/>} />
             </Routes>
-            
+
           </div>
-          <Outerfooter/>
+          <Outerfooter />
         </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
 export default App;

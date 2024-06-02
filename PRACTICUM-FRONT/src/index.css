@@ -53,18 +53,17 @@ h1,h2,h3,h4,h5,h6 {
     background-color: #fff; /* Cambia el color de fondo del menú si lo necesitas */
   }
   .navbar-collapse {
-    position: fixed;
-    top: 56px; /* Ajusta la altura del menú desplegado */
-    left: -100%;
+    position: absolute;
+    top: 100%; /* Ajusta la altura del menú desplegado */
+    left: 0%;
     width: 100%;
-    height: 100%;
-    background: #fff; /* Cambia el color de fondo del menú desplegado si lo necesitas */
-    z-index: 1000;
+    height: auto;
+    background: transparent; /* Cambia el color de fondo del menú desplegado si lo necesitas */
     transition: left 0.3s ease-in-out;
   }
 
   .navbar-collapse.show {
-    left: 50%;
+    left: 0%;
   }
 }
 .bg-menu {
@@ -224,6 +223,14 @@ h1,h2,h3,h4,h5,h6 {
   box-shadow: 0px 10px 40px #858187;
   padding: 70px 50px 50px 50px;
   border-radius: 30px;
+  transition: all .3s;
+}
+.cardform {
+  width: 1300px;
+  margin: auto;
+  box-shadow: 10px 20px 40px #c0bec1;
+  padding: 70px 50px 50px 50px;
+  border-radius: 20px;
   transition: all .3s;
 }
    /* Estilos valores */

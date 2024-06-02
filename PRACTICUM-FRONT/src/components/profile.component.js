@@ -1,97 +1,110 @@
 import React from 'react';
+import axios from 'axios';
+import {BASEPATH} from "../utils/constant"
 
 class ListaEstudiantes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      estudiantes: [],
+      users: [],
+      sectors: [],
+      sector: '',
       filtro: ''
     };
   }
 
-  /*componentDidMount() {
-    fetch('https://randomuser.me/api/?results=8') 
-      .then(response => response.json())
-      .then(data => {
-        const estudiantes = data.results.map((user, index) => ({
-          id: index,
-          nombre: `${user.name.first} ${user.name.last}`,
-          edad: user.dob.age,
-          sector: user.location.city,
-          descripcion: `Género: ${user.gender}`,
-          foto: user.picture.large // URL de la foto grande del usuario
-        }));
-        this.setState({ estudiantes });
+  loadList = () => {
+    const { filtro, sector} = this.state;
+
+
+    axios.post(BASEPATH + '/api/users/search', {
+      search: filtro,
+      sector,
+    })
+      .then(response => {
+        // Actualizar el estado con los datos de la API
+        this.setState({ users: response.data.results });
       })
-      .catch(error => console.error('Error fetching data:', error));
-  }*/
+      .catch(error => {
+        console.error('Error al obtener los perfiles:', error);
+      });
+  }
+
+  loadSectors = () => {
+    axios.get(BASEPATH + '/api/sectors')
+      .then(response => {
+        // Actualizar el estado con los datos de la API
+        this.setState({ sectors: response.data.sectors });
+      })
+      .catch(error => {
+        console.error('Error al obtener los sectores:', error);
+      });
+  }
+
+  componentDidMount() {
+    // Realizar una solicitud a la API
+    this.loadList();
+    this.loadSectors();
+  }
 
   handleFiltroChange = (event) => {
     this.setState({ filtro: event.target.value });
   }
 
+  handleSectorChange = (event) => {
+    this.setState({ sector: event.target.value });
+  }
+
   render() {
-    const { estudiantes, filtro } = this.state;
-    const estudiantesFiltrados = estudiantes.filter(estudiante =>
-      estudiante.nombre.toLowerCase().includes(filtro.toLowerCase())
-    );
+    const { users, sectors, filtro } = this.state;
 
     return (
       <div className="container">
         <div className="row">
           <div className="col-12">
             <h1>Perfiles de Estudiantes</h1>
-            <input type="text" class="search-input" placeholder="Buscar..."></input>
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Buscar..."
+              value={filtro}
+              onChange={this.handleFiltroChange}
+            />
               </div>
-              <div className="col-6">
-              <select class="filter-select">
+              <div className="col-12">
+              <select className="filter-select" onChange={this.handleSectorChange} >
               <option value="">Filtrar por sector</option>
-              <option value="opcion1">Poner sectores</option>
+              {sectors.map(s => (
+                <option value={s.id} >{s.name}</option>
+              ))}
             </select>
-            <button class="search-button">Buscar</button>
             </div>
-            <div className="col-6">
-              <select class="filter-select">
-              <option value="">Filtrar por edad</option>
-              <option value="opcion1">Poner provincias</option>
-            </select>
-            <button class="search-button">Buscar</button>
-            </div>
-            <section class="py-5">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-12">
-                <div class="cardindex mb-4">
-                  <div class="card-body">
-                    <h5 class="card-title">Estudiante 1</h5>
-                    <p class="card-text">Descripción</p>
-                    <button href="/" type="submit" class="btn purple-button my-2">Enviar Mensaje</button>
+            <button className="search-button" onClick={this.loadList} >Buscar</button>
+            <section className="py-5">
+          <div className="container-fluid">
+            <div className="row">
+              {users.map(user => (
+                <div className="col-12 col-lg-6" key={user.id}>
+                  <div className="cardindex mb-4">
+                    <div className="card-body">
+                      <h3 className="card-title">{user.name}</h3>
+                      <hr />
+                      <p className="card-text"><strong>Email: </strong>{user.email}</p>
+                      <p className="card-text"><strong>Centro educativo: </strong>{user.center_id}</p>
+                      <p className="card-text"><strong>Curso: </strong>{user.course_id}</p>
+                      <p className="card-text"><strong>Edad: </strong>{user.age}</p>
+                      <p className="card-text"><strong>Sector: </strong>{user.sector_id}</p>
+                      <p className="card-text"><strong>Descripción: </strong>{user.description}</p>
+                      <button href="/" type="submit" className="btn purple-button my-2">Enviar mensaje</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-12">
-                <div class="cardindex mb-4">
-                  <div class="card-body">
-                    <h5 class="card-title">Estudiante 2</h5>
-                    <p class="card-text">Descripción</p>
-                    <button href="/" type="submit" class="btn purple-button my-2">Enviar Mensaje</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="cardindex mb-4">
-                  <div class="card-body">
-                    <h5 class="card-title">Estudiante 3</h5>
-                    <p class="card-text">Descripción</p>
-                    <button href="/" type="submit" class="btn purple-button my-2">Enviar Mensaje</button>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
-        </div>
-    </section>
           </div>
+        </section>
         </div>
+      </div>
     );
   }
 }

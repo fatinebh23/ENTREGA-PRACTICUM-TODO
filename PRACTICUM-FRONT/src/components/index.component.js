@@ -40,40 +40,40 @@ export default class IndexAdmin extends Component {
                     {/*<h2 class="text text-success px-4">¡ BIENVENIDA&nbsp;
                     <span className="text-danger">{this.state.user.name} !</span></h2>*/}
                     <hr></hr>
-                    <h1 class="text2-shadow d-flex justify-content-center text2-shadow">"Portal de Administración."</h1>
+                    <h1 class="text2-shadow d-flex justify-content-center text2-shadow wow animate__fadeInUp" data-wow-duration="2s">"Portal de Administración."</h1>
 
                     <hr></hr>
                   </div>
                 </div>
                   <div class="container">
                     <div class="row py-3">
-                      <div class="col-lg-6 col-12 p-lg-4">
-                      <a href="/offert" class="link">
+                      <div class="col-lg-6 col-12 p-lg-4 wow animate__backInLeft" data-wow-duration="2s">
+                      <a href="/" class="link">
                         <div class="cardindex shadow text-center">
                         <img src={check} alt="check" width="50%" height="auto"/>
-                          <div class="card-body py-4">
+                          <div class="card-body py-4 wow animate__backInLeft" data-wow-duration="2s">
                             <h3 class="card-title s-bloq-4-text-tittle">Empresas</h3>
                             <p class="card-text s-bloq-4-text pt-3">Validar empresas registradas</p>
                           </div>
                         </div>
                       </a>
                     </div>
-                  <div class="col-lg-6 col-12 p-lg-4">
-                        <a href="/profile" class="link">
+                  <div class="col-lg-6 col-12 p-lg-4 wow animate__backInRight" data-wow-duration="2s">
+                        <a href="/" class="link">
                           <div class="cardindex shadow text-center">
                             <img src={crudcursos} alt="cursos" width="70%" height="auto"/>
-                              <div class="card-body py-4">
+                              <div class="card-body py-4 wow animate__backInRight" data-wow-duration="2s">
                                 <h3 class="card-title s-bloq-4-text-tittle py-2">Cursos</h3>
                                 <p class="card-text s-bloq-4-text">Operaciones CRUD cursos</p>
                           </div>
                         </div>
                       </a>
                     </div>
-                  <div class="col-lg-6 offset-lg-3 col-12 p-lg-4">
-                      <a href="/postoffert" class="link">
+                  <div class="col-lg-6 offset-lg-3 col-12 p-lg-4 wow animate__backInLeft" data-wow-duration="2s">
+                      <a href="/" class="link">
                         <div class="cardindex shadow text-center">
                         <img src={crudcentros} alt="centros" width="50%" height="auto"/>
-                          <div class="card-body p-3">
+                          <div class="card-body p-3 wow animate__backInLeft" data-wow-duration="2s">
                             <h3 class="card-title s-bloq-4-text-tittle py-3">Centros</h3>
                             <p class="card-text s-bloq-4-text">Operaciones CRUD centros</p>
                           </div>

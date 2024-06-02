@@ -1,12 +1,71 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MapContainer from './MapContainer.component';
-
+import { BASEPATH } from "../utils/constant"
+import axios from 'axios';
 import contacto from './img/contacto.jpeg';
+import "./loading.component"
+import "../loading.css"
 
 class Contacto extends React.Component {
 
+  constructor(props) { // Constructor del componente
+    super(props); // Llama al constructor de la clase padre (Component)
+    // Enlaza los métodos de cambio de estado al contexto del componente
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    // Inicializa el estado del componente con los campos del formulario
+    this.state = {
+      name: '',
+      email: '',
+      message: ''
+    };
+  }
+
+  showSpinner() {
+    this.setState({ loading: true });
+  }
+
+  hideSpinner() {
+    this.setState({ loading: false });
+  }
+
+  // Métodos para manejar los cambios en los campos del formulario
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  } 
+  onSubmit(e) {
+    e.preventDefault();
+
+    this.showSpinner();
+
+    const formObject = {
+      name: this.state.name,
+      email: this.state.email,
+      message: this.state.message,
+    };
+
+    axios.post(BASEPATH + '/api/contact', formObject)
+      .then((res) => {
+        this.hideSpinner();
+        if(res.data.status === "success"){
+          this.setState({ name: '', email: '', message: ''})
+            alert(res.data.message)
+        }else{
+          alert("Ocurrió un error. Por favor, inténtalo de nuevo más tarde.");
+        }
+      })
+      .catch((error) => {
+        this.hideSpinner();
+        alert("Ocurrió un error. Por favor, inténtalo de nuevo más tarde.");
+        console.log(error);
+      });
+
+  }
+
   render() {
+
+    const { loading } = this.state;
 
     return (
       <div className="container" >
@@ -27,25 +86,41 @@ class Contacto extends React.Component {
                       <strong>Email:</strong> contact@mypracticum.es</li>
                     </ul>
                   </div>
-                  <div class="col-lg-4 col-12">
+                  <div class="col-lg-4 col-12 wow animate__backInLeft" data-wow-duration="2s">
                     <img src={contacto} class="img-fluid d-flex" width="100%" height="auto"></img>
                   </div>
-                  <div class="col-lg-6 offset-1 col-12">
-                    <form>
+                  <div class="col-lg-6 offset-lg-1 col-12 wow animate__fadeInUp" data-wow-duration="2s">
+                    <form onSubmit={this.onSubmit} >
                       <div class="form-group my-4">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Escriba su nombre"></input>
+                        <input type="text" class="form-control" id="nombre" placeholder="Escriba su nombre" name="name" value={this.state.name}
+                    onChange={this.onChange} ></input>
                       </div>
                       <div class="form-group my-4">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Escriba su email"></input>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Escriba su email" value={this.state.email}
+                    onChange={this.onChange} ></input>
                       </div>
                       <div class="form-group my-4">
                         <label for="mensaje">Mensaje:</label>
-                        <textarea class="form-control" id="mensaje" rows="5" placeholder="Escriba su mensaje"></textarea>
+                        <textarea class="form-control" id="mensaje" rows="5" placeholder="Escriba su mensaje" name="message" value={this.state.message}
+                    onChange={this.onChange} ></textarea>
                       </div>
-                      <button type="submit" class="btn purple-button my-2">Enviar Mensaje</button>
+                      <div className="d-grid">
+                  {loading ? (
+                    <div className="loading-container">
+                      <div className="spinner-border text-success" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <button type="submit" className="btn purple-button my-2">
+                      Enviar Mensaje
+                    </button>
+                  )}
+                </div>
                     </form>
+
                     </div>
                   <div class="col-12 position-relative mt-5" style={{height: "400px"}}>
                   <MapContainer />

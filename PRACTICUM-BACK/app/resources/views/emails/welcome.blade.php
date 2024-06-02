@@ -1,0 +1,1 @@
+Hola {{ $content->name }} bon día!

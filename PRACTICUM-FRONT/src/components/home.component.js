@@ -20,12 +20,12 @@ export default class Home extends Component {
 
     return (
       <div>
-      <section class="s-bloq-1 overflow-hidden">
-        <div class="container wow animate__bounceInUp">
+      <section class="s-bloq-1 overflow-hidden wow animate__fadeInUp" data-wow-duration="2s">
+        <div class="container">
           <div class="row">
         <div class="col-12">
           <div class="row">
-            <div class="col-lg-6 offset-lg-3 position-absolute">
+            <div class="col-lg-6 offset-lg-1 position-absolute">
               <img src={logoname} class="img-fluid" width="100%" height="auto"></img>
             </div>
           <div class="col-12">
@@ -39,7 +39,7 @@ export default class Home extends Component {
        directas con empresas locales. Del mismo modo, las empresas pueden publicar ofertas de prácticas, buscar perfiles de estudiantes y 
        encontrar el talento idóneo para sus necesidades. Únete a Practicum hoy mismo y emprende tu viaje hacia el éxito profesional. 
     Descubre nuevas oportunidades, desarrolla tus habilidades y haz crecer tu carrera con nosotros.</p>*/}
-          <div class="col-12">
+          <div class="col-12 wow animate__fadeInUp" data-wow-duration="2s">
           <h4 class="text-eslogan text-center py-3">"Encuentra la práctica ideal para impulsar tu carrera profesional."</h4>
           </div>
         </div>
@@ -54,8 +54,8 @@ export default class Home extends Component {
         <div class="col-lg-6 col-12">
           <h3 class="s-bloq-3-bg-text">¿Que ofrecemos?</h3>
           <ul class="list-unstyled py-4">
-            <li><a class="btn text-white"><h5>1. Ofertas de prácticas</h5></a></li>
-            <li><a class="btn text-white"><h5>2. Perfiles de estudiantes</h5></a></li>
+            <li><p class=" text-white" ><h5>1. Ofertas de prácticas</h5></p></li><br></br>
+            <li><p class=" text-white" ><h5>2. Perfiles de estudiantes</h5></p></li>
           </ul>
           <div class="col-12 p-4 mt-5 order-2 order-lg-1 bg-caja d-none d-lg-block">
                 <h5>¿Estás buscando nuevas oportunidades para crecer profesionalmente?</h5>
@@ -63,7 +63,7 @@ export default class Home extends Component {
               </div>
         </div>
         <div class="col-12 col-lg-6 px-lg-4 bg-transparent d-flex order-1 order-lg-2">
-                <img src={home1} class="img-fluid" width="100%" height="auto"></img>
+                <img src={home1} class="img-fluid" width="90%" height="auto"></img>
               </div>
         </div>
       </div>
@@ -82,14 +82,14 @@ export default class Home extends Component {
               {/*<a href="#" class="btn btn-outline-dark rounded-4 my-5">Ver el catálogo</a>*/}
             </div>
           </div>
-          <div class="col-lg-6 col-12 order-2 offset-lg-1 px-0 d-flex s-bloq-7-capas">
-            <img src={home2} class="img-fluid s-bloq-7-capas-img"></img>
+          <div class="col-lg-6 col-12 order-2 offset-lg-1 px-0 d-flex s-bloq-7-capas wow animate__backInRight" data-wow-duration="2s" >
+            <img src={home2} class="img-fluid s-bloq-7-capas-img "></img>
           </div>
         </div>
       </div>
       <div class="col-12">
         <div class="row">
-          <div class="col-lg-6 col-12 order-lg-1 order-2 d-flex offset-lg-0">
+          <div class="col-lg-6 col-12 order-lg-1 order-2 d-flex offset-lg-0 wow animate__backInLeft" data-wow-duration="2s">
             <img src={home3} class="img-fluid" width="100%" height="auto"></img>
           </div>
           <div class="col-lg-4 col-12 offset-lg-1 order-lg-2 order-1 d-flex align-items-center">
@@ -108,7 +108,7 @@ export default class Home extends Component {
               <p class="text-align-center"> En nuestro proyecto nos comprometemos a conectar a las empresas con perfiles de estudiantes de Formación Profesional que se ajusten perfectamente a sus necesidades. Nuestra plataforma innovadora facilita esta conexión de manera eficiente, asegurando que encuentres el talento que tu empresa necesita para crecer y prosperar.</p>
               </div>
           </div>
-          <div class="col-lg-6 col-12 order-2 offset-lg-1 px-0 pe-0">
+          <div class="col-lg-6 col-12 order-2 offset-lg-1 px-0 pe-0 wow animate__backInRight" data-wow-duration="2s">
             <img src={home4} class="img-fluid" width="100%" height="auto"></img>
           </div>
             </div>
@@ -132,7 +132,7 @@ export default class Home extends Component {
     <h2 class="display-4 text-center mb-5 text-shadow-poco">Testimonios</h2>
     <div class="row justify-content-center">
     <div class="col-lg-4 mb-4">
-        <div class="testimonial-card">
+        <div class="testimonial-card wow animate__fadeInUp" data-wow-duration="2s" >
           <div class="testimonial-img d-flex justify-content-center py-4">
           <img src={cliente1} class="card-img-top-team rounded-circle" alt="Cliente 1"></img>
           </div>
@@ -142,8 +142,8 @@ export default class Home extends Component {
           </div>
         </div>
       </div>
-      <div class="col-lg-4 mb-4">
-        <div class="testimonial-card">
+      <div class="col-lg-4 mb-4 wow animate__fadeInUp" data-wow-duration="2.5s" >
+        <div class="testimonial-card" >
           <div class="testimonial-img d-flex justify-content-center py-4">
           <img src={cliente2} class="card-img-top-team rounded-circle" alt="Cliente 2"></img>
           </div>
@@ -154,7 +154,7 @@ export default class Home extends Component {
         </div>
       </div>
       <div class="col-lg-4 mb-4">
-        <div class="testimonial-card">
+        <div class="testimonial-card wow animate__fadeInUp" data-wow-duration="2s">
           <div class="testimonial-img d-flex justify-content-center py-4">
           <img src={cliente3} class="card-img-top-team rounded-circle" alt="Cliente 3"></img>
           </div>
@@ -250,14 +250,14 @@ export default class Home extends Component {
         <section class="s-bloq-10 overflow-hidden p-5">
   <div class="container-fluid mt-5">
     <div class="row">
-      <div class="col-lg-5 offset-lg-1 col-12 d-flex justify-content-center s-bloq-10-rec">
-        <div class="py-lg-5 my-lg-5 p-4 text-center">
-          <h3>¿Necesitas más información?</h3>
+      <div class="col-lg-5 offset-lg-1 col-12 s-bloq-10-rec wow animate__backInLeft" data-wow-duration="2s">
+        <div class="py-lg-5 mt-lg-5 p-4">
+          <p>¿Necesitas más información?</p>
           <p>Concerta una reunión, una videollamada o envíanos tus consultas</p>
           <a href="/contacto" class="btn btn-outline-light rounded-4 my-5">Contáctanos</a>
     </div>
   </div>
-  <div class="col-lg-6 d-flex px-0">
+  <div class="col-lg-6 d-flex px-0 wow animate__backInRight" data-wow-duration="2s">
     <img src={home5} class="img-fluid d-none d-lg-block d-flex" width="90%" height="auto"></img>
   </div>
   </div>

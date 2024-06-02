@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -48,6 +50,11 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
             'type' => 'required|string|in:company,student',
+            'nameCompany' => $request->type === 'company' ? 'required|string|max:255' : '',
+            'dir' => $request->type === 'company' ? 'required|string|max:255' : '',
+            'prov' => 'required|string|max:255',
+            'center' => $request->type === 'student' ? 'required|string|max:255' : '',
+            'fecha' => $request->type === 'student' ? 'required|date' : '',
         ]);
         
         // Determinar el role_id basado en el campo de selección
@@ -65,7 +72,8 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->role_id = $role->id;
 
-        $user->save();
+        // Guarda el usuario en la base de datos
+        //$user->save();
         /* $user = User::create([
             'name' => ,
             'email' => $request->email,
@@ -73,8 +81,10 @@ class AuthController extends Controller
             'role_id' => $role->id,
         ]); */
 
+        Mail::to($request->email)->send(new WelcomeEmail($request));
+
         return response()->json([
-            'message' => 'Usuario registrado correctamente',
+            'message' => 'Mensaje enviado correctamente',
             'user' => $user
         ]);
     }

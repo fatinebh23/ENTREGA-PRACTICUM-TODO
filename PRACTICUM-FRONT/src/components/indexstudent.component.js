@@ -38,30 +38,30 @@ export default class IndexUser extends Component {
                 {/*<h2 class="text text-success px-4">¡ BIENVENIDA&nbsp;
                 <span className="text-danger">{this.state.user.name} !</span></h2>*/}
                 <hr></hr>
-                <h1 class="text2-shadow d-flex justify-content-center">"Encuentra la práctica ideal para impulsar tu carrera profesional."</h1>
+                <h1 class="text2-shadow d-flex justify-content-center wow animate__fadeInUp" data-wow-duration="2s">"Encuentra la práctica ideal para impulsar tu carrera profesional."</h1>
                 <hr></hr>
               </div>
             </div>
           <div class="container">
             <div class="row py-3">
-              <div class="col-lg-6 col-12 p-lg-4">
+              <div class="col-lg-6 col-12 p-lg-4 wow animate__backInLeft" data-wow-duration="2s">
                 <a href="/offert" class="link">
                   <div class="cardindex shadow text-center">
                     <img src={oferta} alt="bg" width="60%" height="auto"/>
-                      <div class="card-body py-3">
-                        <h3 class="card-title s-bloq-4-text-tittle py-4">Ofertas</h3>
+                      <div class="card-body py-3 wow animate__backInLeft" data-wow-duration="2s">
+                        <h3 class="card-title s-bloq-4-text-tittle py-4">Ver ofertas</h3>
                           <p class="card-text s-bloq-4-text">Ver todas las ofertas publicadas por las empresas</p>
                       </div>
                     </div>
                   </a>
                 </div>
-          <div class="col-lg-6 col-12 p-lg-4">
+          <div class="col-lg-6 col-12 p-lg-4 wow animate__backInRight" data-wow-duration="2s">
             <a href="/postprofile" class="link">
               <div class="cardindex shadow text-center">
                 <img src={cv} alt="bg" width="60%" height="auto"/>
-                  <div class="card-body py-3">
-                    <h3 class="card-title s-bloq-4-text-tittle py-4">Publicar perfil</h3>
-                    <p class="card-text s-bloq-4-text">Rellenar el formulario con tus datos</p>
+                  <div class="card-body py-3 wow animate__backInRight" data-wow-duration="2s">
+                    <h3 class="card-title s-bloq-4-text-tittle py-4">Editar perfil</h3>
+                    <p class="card-text s-bloq-4-text">Modificar tus datos del perfil</p>
                   </div>
               </div>
             </a>

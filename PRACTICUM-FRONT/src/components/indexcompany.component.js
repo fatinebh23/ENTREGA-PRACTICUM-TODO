@@ -34,30 +34,30 @@ export default class IndexCompany extends Component {
                     {/*<h2 class="text text-success px-4">¡ BIENVENIDA&nbsp;
                     <span className="text-danger">{this.state.user.name} !</span></h2>*/}
                     <hr></hr>
-                    <h1 class="text2-shadow d-flex justify-content-center">"Encuentra el perfil ideal para tu empresa."</h1>
+                    <h1 class="text2-shadow d-flex justify-content-center wow animate__fadeInUp" data-wow-duration="2s">"Encuentra el perfil ideal para tu empresa."</h1>
                     <hr></hr>
                   </div>
                 </div>
               <div class="container">
                 <div class="row py-3">
-                  <div class="col-lg-6 col-12 p-lg-4">
+                  <div class="col-lg-6 col-12 p-lg-4 wow animate__backInLeft" data-wow-duration="2s">
                     <a href="/postoffert" class="link">
                       <div class="cardindex shadow text-center">
                         <img src={oferta} alt="bg" width="70%" height="auto"/>
-                          <div class="card-body py-2">
+                          <div class="card-body py-2 wow animate__backInLeft" data-wow-duration="2s">
                             <h3 class="card-title s-bloq-4-text-tittle py-2">Publicar oferta</h3>
-                            <p class="card-text s-bloq-4-text">Rellenar el formulario con tus datos</p>
+                            <p class="card-text s-bloq-4-text">Rellenar formulario sobre tu oferta</p>
                           </div>
                         </div>
                       </a>
                     </div>
-                <div class="col-lg-6 col-12 p-lg-4">
+                <div class="col-lg-6 col-12 p-lg-4 wow animate__backInRight" data-wow-duration="2s">
                     <a href="/profile" class="link">
                       <div class="cardindex shadow text-center">
                         <img src={perfil} alt="bg" width="100%" height="auto"/>
-                          <div class="card-body py-2">
-                            <h3 class="card-title s-bloq-4-text-tittle py-3">Perfiles</h3>
-                            <p class="card-text s-bloq-4-text">Ver todos los perfiles de los estudiantes</p>
+                          <div class="card-body py-2 wow animate__backInRight" data-wow-duration="2s">
+                            <h3 class="card-title s-bloq-4-text-tittle py-3">Ver perfiles</h3>
+                            <p class="card-text s-bloq-4-text">Ver los perfiles de los estudiantes</p>
                           </div>
                         </div>
                       </a>

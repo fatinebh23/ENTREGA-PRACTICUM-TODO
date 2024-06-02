@@ -1,176 +1,240 @@
 import React, { Component } from 'react'
 import { BASEPATH } from "../utils/constant"
 import axios from 'axios';
+import "./loading.component"
+import "../loading.css"
 
 export default class PostProfile extends Component {
 
   constructor(props) { // Constructor del componente
     super(props); // Llama al constructor de la clase padre (Component)
     // Enlaza los métodos de cambio de estado al contexto del componente
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onChangeUserEmail = this.onChangeUserEmail.bind(this);
-    this.onChangeAge = this.onChangeAge.bind(this);
-    this.onChangeCenter = this.onChangeCenter.bind(this);
-    this.onChangeSector = this.onChangeSector.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.showSpinner = this.showSpinner.bind(this);
+    this.hideSpinner = this.hideSpinner.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+
+
     // Inicializa el estado del componente con los campos del formulario
     this.state = {
       name: '',
       email: '',
       age: '',
-      center: '',
-      sector: '',
-      description: ''
+      center_id: '',
+      sector_id: '',
+      course_id: '',
+      description: '',
+      errors: {},
+      loading: false,
     };
   }
 
   // Métodos para manejar los cambios en los campos del formulario
-  onChangeName(e) {
-    this.setState({ name: e.target.value });
+  onChange(e) {
+  this.setState({ [e.target.name]: e.target.value });
+}
+ 
+
+  showSpinner() {
+    this.setState({ loading: true });
   }
-  onChangeUserEmail(e) {
-    this.setState({ email: e.target.value });
+
+  hideSpinner() {
+    this.setState({ loading: false });
   }
-  onChangeAge(e) {
-    this.setState({ age: e.target.value });
-  }
-  onChangeCenter(e) {
-    this.setState({ center: e.target.value });
-  }
-  onChangeSector(e) {
-    this.setState({ sector: e.target.value });
-  }
-  onChangeDescription(e) {
-    this.setState({ description: e.target.value });
-  }
+
+  // Validación de los campos del formulario
+  validateForm() {
+    const { name, email, age, center_id, sector_id, course_id, description } = this.state;
+    const errors = {};
+
+    if (!name) {
+      errors.name = 'Campo obligatorio';
+    } else if (name.length < 3 || name.length > 20) {
+      errors.name = 'El nombre debe tener entre 3 y 20 caracteres';
+    }
+
+    if (!email) {
+      errors.email = 'Campo obligatorio';
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      errors.email = 'Correo electrónico no válido';
+    }
+
+    if (!age) {
+      errors.age = 'Campo obligatorio';
+    } else if (isNaN(age) || age < 0) {
+      errors.age = 'La edad debe ser un número positivo';
+    }
+
+    //if (!center_id) errors.center_id = 'Campo obligatorio';
+    //if (!sector_id) errors.sector_id = 'Campo obligatorio';
+    //if (!course_id) errors.course_id = 'Campo obligatorio';
+    if (!description) errors.description = 'Campo obligatorio';
+
+    this.setState({ errors });
+
+    return errors;
+}
 
   onSubmit(e) { // Método para manejar la presentación del formulario
     e.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+    const errors = this.validateForm(); // Llamada a la función validateForm
 
-    // Validación de longitud del nombre
-    if (this.state.name.length < 3 || this.state.name.length > 20) {
-      alert("El nombre debe tener entre 3 y 20 caracteres.");
-    } else {
+    if (Object.keys(errors).length > 0) { // Verificar si no hay errores
+      // Aquí puedes enviar el formulario si no hay errores
+      return
+    }
+
+    this.showSpinner(); // Muestra el spinner de carga
+
       // Objeto con los datos del perfil a enviar
-      const postprofileObject = {
+      const postProfileObject = {
         name: this.state.name,
         email: this.state.email,
         age: this.state.age,
-        center: this.state.center,
-        sector: this.state.sector,
-        description: this.state.description
+        center_id: this.state.center_id,
+        sector_id: this.state.sector_id,
+        course_id: this.state.course_id,
+        description: this.state.description,
       };
+
+      const user = JSON.parse(localStorage.getItem('user')); // Obtiene el usuario del almacenamiento local
+
       // Envía una solicitud POST al servidor con los datos del perfil
-      axios.post(BASEPATH + '/api/users/add', postprofileObject)
-        .then((res) => {
-          if (res.data.message === "Perfil publicado correctamente.") { // Si el perfil se publica correctamente
-            alert("Perfil correcto."); // Muestra un mensaje de alerta
-            window.location = "/profile"; // Redirige al usuario a la página de perfil
-          }
-        }).catch((error) => {
-          if (error.response.data === "{\"email\":[\"El perfil ya ha sido publicado.\"]}") { // Si el perfil ya ha sido publicado
-            alert("El perfil ya ha sido publicado con el mismo email."); // Muestra un mensaje de alerta
-          }
-        });
-      // Limpia los campos del formulario después de enviar
-      this.setState({
-        name: '',
-        email: '',
-        age: '',
-        center: '',
-        sector: '',
-        description: ''
-      });
+      axios.post(BASEPATH + '/api/users/update/' + user.user.id, postProfileObject)
+
+      .then((res) => {
+        if (res.data.message === "Perfil modificado correctamente.") { // Si el perfil se publica correctamente
+          alert("Perfil modificado correctamente."); // Muestra un mensaje de alerta
+        }
+      })
+      .finally(() => {
+        this.hideSpinner(); // Oculta el Spinner
+      })
+      .catch((error) => {
+        // Comprueba si la respuesta de error contiene un mensaje específico
+        if (error.response && error.response.data && error.response.data.message) { 
+            alert(error.response.data.message); // Muestra un mensaje de alerta con el mensaje de error específico
+        } else {
+            alert("No se ha producido correctamente."); // Muestra un mensaje de alerta general para otros errores
+            console.error(error.response.data);
+        }
+    });
     }
-  }
 
   render() {
+
+    const { errors, loading } = this.state; // Obtiene los errores del estado
+
     return (
       <div className="container">
         <div className="row">
-          <div className="col-12">
-            <div className="card col-12">
+          <div className="cardform col-12">
               <form onSubmit={this.onSubmit}>
-                <h3>Crea tu perfil</h3>
+                <h3>Editar perfil</h3>
                 <div>
                   <div className="mb-3">
                     <label>Nombre</label>
                     <input
-                      type="nombre"
-                      className="form-control"
+                      type="text"
+                      className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                       placeholder="Escriba su nombre"
-                      onChange={this.onChangeName}
+                      onChange={this.onChange}
                       name="name"
                       value={this.state.name}
                     />
+                    {errors.name && <div className="invalid-feedback">{errors.name}</div>} {/* Muestra el mensaje de error si existe */}
                   </div>
                   <div className="mb-3">
                     <label>Email</label>
                     <input
-                      type="email"
-                      className="form-control"
+                      type="text"
+                      className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                       placeholder="Escriba su email"
-                      onChange={this.onChangeUserEmail}
+                      onChange={this.onChange}
                       name="email"
                       value={this.state.email}
                     />
+                    {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                   </div>
                   <div className="mb-3">
                     <label>Edad</label>
                     <input
-                      type="edad"
-                      className="form-control"
+                      type="number"
+                      className={`form-control ${errors.age ? 'is-invalid' : ''}`}
                       placeholder="Escriba su edad"
-                      onChange={this.onChangeAge}
-                      name="edad"
+                      onChange={this.onChange}
+                      name="age"
                       value={this.state.age}
                     />
+                    {errors.age && <div className="invalid-feedback">{errors.age}</div>}
                   </div>
                   <div className="mb-3">
                     <label>Centro</label>
                     <input
-                      type="ubicacion"
-                      className="form-control"
+                      type="text"
+                      className={`form-control ${errors.center_id ? 'is-invalid' : ''}`}
                       placeholder="Escriba donde estudia o ha estudiado"
-                      onChange={this.onChangeCenter}
-                      name="ubicacion"
-                      value={this.state.center}
+                      onChange={this.onChange}
+                      name="center_id"
+                      value={this.state.center_id}
                     />
+                    {errors.center_id && <div className="invalid-feedback">{errors.center_id}</div>}
                   </div>
                   <div className="mb-3">
                     <label>Sector</label>
                     <input
-                      type="sector"
-                      className="form-control"
+                      type="text"
+                      className={`form-control ${errors.sector_id ? 'is-invalid' : ''}`}
                       placeholder="Escriba el sector que ha estudiado"
-                      onChange={this.onChangeSector}
-                      name="sector"
-                      value={this.state.sector}
+                      onChange={this.onChange}
+                      name="sector_id"
+                      value={this.state.sector_id}
                     />
+                    {errors.sector_id && <div className="invalid-feedback">{errors.sector_id}</div>}
+                  </div>
+                  <div className="mb-3">
+                    <label>Curso</label>
+                    <input
+                      type="text"
+                      className={`form-control ${errors.course_id ? 'is-invalid' : ''}`}
+                      placeholder="Escriba el curso que ha estudiado"
+                      onChange={this.onChange}
+                      name="course_id"
+                      value={this.state.course_id}
+                    />
+                    {errors.course_id && <div className="invalid-feedback">{errors.course_id}</div>}
                   </div>
                   <div className="mb-3">
                     <label>Descripción</label>
                     <input
-                      type="descripcion"
-                      className="form-control"
-                      placeholder="Escriba la descripción de su perfil"
-                      onChange={this.onChangeDescription}
-                      name="descripcion"
+                      type="text"
+                      className={`form-control ${errors.description ? 'is-invalid' : ''}`}
+                      placeholder="Escriba sus habilidades y qué es lo que buscas"
+                      onChange={this.onChange}
+                      name="description"
                       value={this.state.description}
                     />
+                    {errors.description && <div className="invalid-feedback">{errors.description}</div>}
                   </div>
                   <div className="d-grid">
+                  {loading ? (
+                    <div className="loading-container">
+                      <div className="spinner-border text-success" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  ) : (
                     <button type="submit" className="btn purple-button text-uppercase py-3 m-5">
-                      Publicar
+                      Guardar
                     </button>
-                  </div>
+                  )}
+                </div>
                 </div>
               </form>
             </div>
           </div>
         </div>
-      </div>
     )
   }
 }

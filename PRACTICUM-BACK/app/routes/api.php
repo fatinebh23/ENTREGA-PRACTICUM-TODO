@@ -9,6 +9,8 @@ use App\Http\Controllers\SectorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProvinceController;
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -24,25 +26,35 @@ Route::controller(AuthController::class)->group(function () {
     // Ruta para refrescar el token
     // https://api.mypracticum.es/api/refresh
     Route::post('refresh', 'refresh');
+    // Ruta para obtener un mensaje de contacto
+    Route::post('contact', [ContactController::class, 'index']);
 });
 Route::group([
-    'middleware' => config('app.middleware_auth'),
+    //'middleware' => config('app.middleware_auth'),
     'prefix' => 'offerts',
 ], function () {
+     // Ruta para obtener todas las ofertas
+    // https://api.mypracticum.es/api/offerts
     Route::get('', [OffertController::class, 'index']);
-    Route::get('search', [OffertController::class, 'search']);
+    // Ruta para buscar ofertas por filtros
+    // https://api.mypracticum.es/api/offerts/search
+    Route::post('search', [OffertController::class, 'search']);
+    // Ruta para agregar una nueva oferta
+    // https://api.mypracticum.es/api/offerts/add
     Route::post('add', [OffertController::class, 'add']);
 });
-Route::controller(UserController::class)->group(function () {
-    // Ruta para obtener todas los perfiles
+Route::group([
+    'prefix' => 'users',
+], function () {
+     // Ruta para obtener todos los perfiles
     // https://api.mypracticum.es/api/users
-    Route::get('users', 'index');
+    Route::get('', [UserController::class, 'index']);
     // Ruta para buscar perfiles por filtros
     // https://api.mypracticum.es/api/users/search
-    Route::get('users/search', 'search');
+    Route::post('search', [UserController::class, 'search']);
     // Ruta para agregar un nuevo perfil
-    // https://api.mypracticum.es/api/users/add
-    Route::post('users/add', 'add');
+    // https://api.mypracticum.es/api/users/update
+    Route::post('update/{id}', [UserController::class, 'update']);
 });
 Route::controller(CenterController::class)->group(function () {
     // Ruta para obtener todos los centros
@@ -68,4 +80,9 @@ Route::controller(LevelController::class)->group(function () {
     // Ruta para obtener todos los niveles
     // https://api.mypracticum.es/api/levels
     Route::get('levels', 'index');
+});
+Route::controller(ProvinceController::class)->group(function () {
+    // Ruta para obtener todas las provincias
+    // https://api.mypracticum.es/api/provinces
+    Route::get('provinces', 'index');
 });
