@@ -13,6 +13,24 @@ class RoleFactory extends Factory
         return [
             'name' => $this->faker->unique()->word,
             'description' => $this->faker->sentence,
+            'slug' => $this->faker->unique()->word, // Añadir el slug aquí
         ];
+    }
+
+    // Puedes agregar estados para roles específicos
+    public function company()
+    {
+        return $this->state([
+            'name' => 'Company',
+            'slug' => 'company',
+        ]);
+    }
+
+    public function student()
+    {
+        return $this->state([
+            'name' => 'Student',
+            'slug' => 'student',
+        ]);
     }
 }

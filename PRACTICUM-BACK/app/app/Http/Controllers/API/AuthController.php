@@ -64,6 +64,12 @@ class AuthController extends Controller
             $role = Role::where(['slug' => 'student'])->first();
         };
 
+        // Verificar si se encontró un rol
+        if (!$role) {
+            // Manejar el caso en que no se encontró un rol válido
+            return response()->json(['error' => 'No se encontró ningún rol válido'], 500);
+        }
+
 
         // Crear el usuario con el role_id correspondiente
         $user = new User();
@@ -80,6 +86,16 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'role_id' => $role->id,
         ]); */
+
+        // Guardar información adicional si es una empresa
+        if ($request->type === 'company') {
+            $user->nameCompany = $request->nameCompany;
+            $user->dir = $request->dir;
+            $user->prov = $request->prov;
+        } elseif ($request->type === 'student') {
+            $user->center = $request->center;
+            $user->fecha = $request->fecha;
+        }
 
         Mail::to($request->email)->send(new WelcomeEmail($request));
 
