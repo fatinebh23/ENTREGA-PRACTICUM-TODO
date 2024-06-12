@@ -66,17 +66,17 @@ export default class SignUp extends Component {
     if (!password) errors.password = 'Campo obligatorio';
 
     // Validación del tipo de usuario
-    if (!type) errors.type = 'Campo obligatorio';
+    if (!this.state.type) errors.type = 'Campo obligatorio';
 
     // Validación específica para tipo "company"
-    if (type === 'company') {
+    if (this.state.type === 'company') {
         if (!nameCompany) errors.nameCompany = 'Campo obligatorio';
         if (!dir) errors.dir = 'Campo obligatorio';
         if (!prov) errors.prov = 'Campo obligatorio';
     }
 
     // Validación específica para tipo "student"
-    if (type === 'student') {
+    if (this.state.type === 'student') {
         if (!center) errors.center = 'Campo obligatorio';
         if (!prov) errors.prov = 'Campo obligatorio';
         if (!fecha) errors.fecha = 'Campo obligatorio';
@@ -111,10 +111,8 @@ export default class SignUp extends Component {
     axios.post(BASEPATH + '/api/register', formObject)
       .then((res) => {
         this.hideSpinner();
-
-        if(res.data.message === "Usuario registrado correctamente"){
-            alert("Registro correcto.")
-            window.location = "/sign-in";
+        localStorage.setItem('user', JSON.stringify(res.data));
+        if(res.data.user.message === "Usuario registrado correctamente."){
             this.setState({
               name: '',
               email: '',
@@ -127,6 +125,8 @@ export default class SignUp extends Component {
               fecha: '',
               errors: {}
           });
+            alert("Registro correcto.");
+            window.location.href = "/sign-in";
         }
       })
       .catch((error) => {

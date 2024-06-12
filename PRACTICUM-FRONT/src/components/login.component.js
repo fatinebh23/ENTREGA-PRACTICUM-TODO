@@ -83,17 +83,18 @@ export default class Login extends Component {
           localStorage.setItem('user', JSON.stringify(res.data));
           switch (res.data.user.role_id) {
             case 2:// Empresa
-              window.location = "/indexcompany";
+              window.location.href = "/indexcompany";
               break;
             case 3:// Estudiante
-              window.location = "/indexstudent";
+              window.location.href = "/indexstudent";
               break;
             case 1:// Administrador
-              window.location = "/index";
+              window.location.href = "/index";
               break;
             default:
-              alert("Role desconocido");
-          }
+              alert("Role desconocido. Por favor, contacte al administrador.");
+          } 
+        } else {
           alert("Inicio de sesión correctamente.");
 
           if (this.rememberMe) {

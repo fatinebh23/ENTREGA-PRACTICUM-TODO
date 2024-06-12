@@ -57,43 +57,34 @@ class AuthController extends Controller
             'fecha' => $request->type === 'student' ? 'required|date' : '',
         ]);
         
-
         // Determinar el role_id basado en el campo de selección
-        if ($request->type() === 'company') {
+        if ($request->type === 'company') {
             $role = Role::where(['slug' => 'company'])->first();
-        } elseif ($request->type() === 'student'){
+        } elseif ($request->type === 'student'){
             $role = Role::where(['slug' => 'student'])->first();
         };
 
-        // Verificar si se encontró un rol
-        if (!$role) {
-            // Manejar el caso en que no se encontró un rol válido
-            return response()->json(['error' => 'No se encontró ningún rol válido'], 500);
-        }
+
+        // Crear el usuario con el role_id correspondiente
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role_id = $role->id;
 
         // Guarda el usuario en la base de datos
-        $user = User::create([
-            'name' => $request->name,
+        //$user->save();
+        /* $user = User::create([
+            'name' => ,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'age' => $request->fecha,
             'role_id' => $role->id,
-        ]);
-
-        // Guardar información adicional si es una empresa
-        /*if ($request->type === 'company') {
-            $user->nameCompany = $request->nameCompany;
-            $user->dir = $request->dir;
-            $user->prov = $request->prov;
-        } elseif ($request->type === 'student') {
-            //$user->center_id = $request->center;
-            //$user->fecha = $request->fecha;
-        }*/
+        ]); */
 
         Mail::to($request->email)->send(new WelcomeEmail($request));
 
         return response()->json([
-            'message' => 'Usuario registrado correctamente',
+            'message' => 'Mensaje1 enviado correctamente',
             'user' => $user
         ]);
     }

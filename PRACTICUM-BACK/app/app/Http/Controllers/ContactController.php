@@ -12,7 +12,7 @@ class ContactController extends Controller
     // https://api.mypracticum.es/api/contact
     public function index(Request $request)
     {
-        Mail::to('claudia@pinchaaqui.es')->send(new ContactEmail($request));
+        Mail::to('contact@mypracticum.es')->send(new ContactEmail($request));
 
         return response()->json([
             'status' => 'success',

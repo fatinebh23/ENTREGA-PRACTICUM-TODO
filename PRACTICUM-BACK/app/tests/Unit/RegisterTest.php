@@ -3,14 +3,11 @@
 namespace Tests\Unit;
 
 use App\Models\User;
-use App\Models\Role;
 use Tests\TestCase; // Usar la TestCase de Laravel
 
 class RegisterTest extends TestCase {
 
-    /**
-     * Prueba básica para el registro de un usuario.
-     */
+    
     public function test_user_can_register(): void
     {
 
@@ -40,5 +37,5 @@ class RegisterTest extends TestCase {
         // Verificar que el usuario tenga el rol correcto asignado
         $user = User::where('email', 'contact@pinchaaqui.es')->first();
         $this->assertEquals('company', $user->role->slug);
-    }
+    } 
 }

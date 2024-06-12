@@ -12,6 +12,7 @@ export default class Outernavbar extends Component {
     if (udata == null) { // Si no hay datos de usuario en el localStorage
       loggedIN = false; // Establece loggedIN como falso
     }
+
     // Inicializa el estado del componente con los datos del usuario y su estado de inicio de sesión
     this.state = {
       user: (odata) ? odata.user : '', // Nombre de usuario
